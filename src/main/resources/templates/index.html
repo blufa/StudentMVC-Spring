@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+<head>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="card mt-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage <b>Students </b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a th:href="@{/download-pdf}" class="btn btn-primary">
+                           <span>
+                               <img th:src="@{/images/pdf_icon.png}" height="20" width="20">
+                           </span>
+                            <span>Download pdf</span>
+                        </a>
+
+                        <a th:href="@{/formStudent}" class="btn btn-success" ><span>Add New Student</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="get" th:action="@{index}">
+                    <label>Mot Clé</label>
+                    <input type="text" name="motCle" th:value="${motCle}">
+                    <button type="submit" class="btn btn-primary">Chercher</button>
+                </form>
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th >
+
+                        </th>
+                        <th >ID</th>
+                        <th >Nom Prenom</th>
+                        <th >Adresse</th>
+                        <th >Email</th>
+                        <th >Téléphone</th>
+                        <th >Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="st:${students}">
+                        <td >
+                            <span class="custom-checkbox">
+                            <input type="checkbox" id="selectAll">
+                            <label for="selectAll"></label>
+                        </span>
+                        </td>
+                        <td th:text="${st.id}"></td>
+                        <td th:text="${st.name}"></td>
+                        <td th:text="${st.adresse}"></td>
+                        <td th:text="${st.email}"></td>
+                        <td th:text="${st.phone}"></td>
+                        <td >
+                            <a th:href="@{/delete/{id}(id=${st.id}, motCle=${motCle}, page=${currentPage})}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{/edit(id=${st.id})}" class="btn btn-warning">Edit</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:each="page,status:${pages}">
+                        <a th:class="${status.index==currentPage? 'btn btn-primary ms-1':'btn btn-outline-primary ms-1'}"
+                                th:text="${status.index}"
+                           th:href="@{index(page=${status.index},motCle=${motCle})}"
+                        ></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

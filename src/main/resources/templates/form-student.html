@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="card mt-4 col-md-6">
+            <div class="card-header">
+                <h2>Gestion <b>Students </b></h2>
+            </div>
+            <div class="card-body">
+                <form class="form-control" method="post" th:action="@{/add}" th:object="${student}">
+                    <div class="mb-2">
+                        <input type="hidden"th:field="*{id}" class="form-control" id="id" aria-describedby="id">
+                    </div>
+                    <div class="mb-2">
+                        <label for="name" class="form-label">Nom et Prénom</label>
+                        <input type="text"th:field="*{name}" class="form-control" id="name" aria-describedby="name">
+                    </div>
+                    <div class="mb-2">
+                        <label for="adresse" class="form-label">Adresse</label>
+                        <input type="text"th:field="*{adresse}" class="form-control" id="adresse" aria-describedby="adresse">
+                    </div>
+                    <div class="mb-2">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email"th:field="*{email}" class="form-control" id="email" aria-describedby="email">
+                    </div>
+                    <div class="mb-2">
+                        <label for="phone" class="form-label">Téléphone</label>
+                        <input type="text"th:field="*{phone}" class="form-control" id="phone" aria-describedby="phone">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <a th:href="@{/}" class="btn btn-danger">Annuler</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
