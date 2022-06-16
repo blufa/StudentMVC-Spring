@@ -61,7 +61,7 @@
                         <td th:text="${st.phone}"></td>
                         <td >
                             <a th:href="@{/delete/{id}(id=${st.id}, motCle=${motCle}, page=${currentPage})}" class="btn btn-danger">Delete</a>
-                            <a th:href="@{/edit(id=${st.id})}" class="btn btn-warning">Edit</a>
+                            <a th:href="@{/edit/{id}(id=${st.id})}" class="btn btn-warning">Edit</a>
                         </td>
                     </tr>
                     </tbody>
